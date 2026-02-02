@@ -68,5 +68,5 @@ streamlit run app.py
 ---
 
 <p align="center">
-  <i>Built with ❤️ for Women's Health. Powered by Python.</i>
+  <i>Built by Mano.MedEngg with ❤️ for Women's Health.</i>
 </p>
