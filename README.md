@@ -1,4 +1,6 @@
-![Mahwari ka Trekr Banner](assets/banner.png)
+<p align="center">
+  <img src="assets/banner.png" alt="Mahwari ka Trekr Logo" width="200" height="200">
+</p>
 
 # 🩸 Mahwari ka Trekr
 
