@@ -1,54 +1,372 @@
-/* Main App Background */
-.stApp {
-    background: linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%);
-    font-family: 'Inter', sans-serif;
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: hsl(0, 100%, 50%);
+    /* Neon Red */
+    --primary-dark: hsl(0, 100%, 30%);
+    --primary-light: hsl(0, 100%, 70%);
+    --bg-color: #050505;
+    --text-color: #FFFFFF;
+    --card-bg: #121212;
+    --border-color: #333333;
+    --muted-text: #AAAAAA;
 }
 
-/* Glassmorphism Card Logic */
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Main App Background */
+.stApp {
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+        /* Darken overlay */
+        url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Falling Drops Animation */
+.drop-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.drop {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 64, 129, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: fall linear infinite;
+    top: -20px;
+}
+
+/* Varied drop sizes and speeds */
+.drop:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    width: 30px;
+    height: 30px;
+    animation-delay: 0s;
+}
+
+.drop:nth-child(2) {
+    left: 25%;
+    animation-duration: 12s;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+}
+
+.drop:nth-child(3) {
+    left: 40%;
+    animation-duration: 10s;
+    width: 25px;
+    height: 25px;
+    animation-delay: 4s;
+}
+
+.drop:nth-child(4) {
+    left: 60%;
+    animation-duration: 15s;
+    width: 20px;
+    height: 20px;
+    animation-delay: 1s;
+}
+
+.drop:nth-child(5) {
+    left: 80%;
+    animation-duration: 9s;
+    width: 35px;
+    height: 35px;
+    animation-delay: 3s;
+}
+
+.drop:nth-child(6) {
+    left: 90%;
+    animation-duration: 11s;
+    width: 10px;
+    height: 10px;
+    animation-delay: 5s;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(110vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Glassmorphism Card (Premium) */
+.glass-card,
+div[data-testid="stTabs"] {
+    background: rgba(40, 40, 40, 0.25);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* 3D Button Effect */
+/* Fix for Tab Headers to blend in */
+div[data-testid="stTabs"] button[data-baseweb="tab"] {
+    background-color: transparent;
+}
+
+/* 3D Button Effect (Streamlit Buttons) */
 div.stButton>button {
-    background: linear-gradient(145deg, #ff4b4b, #d43f3f);
+    background: rgba(255, 0, 50, 0.8);
+    backdrop-filter: blur(4px);
     color: white;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px #1a1a25, -5px -5px 10px #32324b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 0, 50, 0.3);
     transition: all 0.2s ease-in-out;
-    font-weight: 600;
 }
 
 div.stButton>button:hover {
     transform: translateY(-2px);
-    box-shadow: 7px 7px 15px #1a1a25, -7px -7px 15px #32324b;
+    box-shadow: 0 6px 20px rgba(255, 0, 50, 0.6);
+    background: rgba(255, 0, 50, 1);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 div.stButton>button:active {
-    transform: translateY(2px);
-    box-shadow: inset 5px 5px 10px #be3838, inset -5px -5px 10px #ff5e5e;
+    transform: translateY(1px);
 }
 
-/* Inputs */
-.stTextInput>div>div>input {
+/* Inputs (Glassy) */
+.stTextInput>div>div>input,
+.stDateInput>div>div>input {
     background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
+    padding: 10px;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
-/* Custom Headers */
+.stTextInput>div>div>input:focus,
+.stDateInput>div>div>input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Headers */
 h1,
 h2,
 h3 {
-    color: #ffd1d1;
-    text-shadow: 0px 0px 10px rgba(255, 75, 75, 0.3);
+    color: var(--text-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #ff4040, #ff8080);
+    -webkit-background-clip: var(--muted-text);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Exercise Card Specifics */
+.exercise-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+}
+
+.exercise-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.exercise-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.exercise-info h4 {
+    margin: 0 0 5px 0;
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.exercise-info p {
+    margin: 0;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Settings Specifics */
+/* Rainbow Slider Track Override */
+div[data-testid="stSlider"]>div>div>div>div {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+    border-radius: 10px;
+}
+
+/* Red Notification Button */
+.notification-btn {
+    background-color: rgba(255, 0, 0, 0.8) !important;
+    backdrop-filter: blur(5px);
+    color: white !important;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+.notification-btn:hover {
+    background-color: rgba(255, 0, 0, 1) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.stTimeInput input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+
+    /* Maximize container usage */
+    .block-container {
+        padding-top: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-bottom: 2rem !important;
+        max-width: 100%;
+    }
+
+    .glass-card {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Buttons full width for touch targets */
+    div.stButton>button {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1.1rem;
+    }
+
+    /* Stack exercise cards nicely */
+    .exercise-card {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        padding: 10px;
+    }
+
+    /* Actually for very small screens, stacking is safer */
+    @media (max-width: 400px) {
+        .exercise-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    .exercise-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Settings Overlay Compact */
+    .settings-overlay {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* Adjust notification/slider rows */
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+/* Hide Sidebar */
+[data-testid="stSidebar"] {
+    display: none;
+}
+
+/* Settings Overlay Style */
+.settings-overlay {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -13,6 +13,7 @@ pip-delete-this-directory.txt
 # Streamlit
 .streamlit/secrets.toml
 
+
 # Data (Exclude local database)
 data/*.db
 *.sqlite3
