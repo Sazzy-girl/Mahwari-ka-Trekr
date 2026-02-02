@@ -1,0 +1,54 @@
+/* Main App Background */
+.stApp {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Glassmorphism Card Logic */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 3D Button Effect */
+div.stButton>button {
+    background: linear-gradient(145deg, #ff4b4b, #d43f3f);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px #1a1a25, -5px -5px 10px #32324b;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+}
+
+div.stButton>button:hover {
+    transform: translateY(-2px);
+    box-shadow: 7px 7px 15px #1a1a25, -7px -7px 15px #32324b;
+}
+
+div.stButton>button:active {
+    transform: translateY(2px);
+    box-shadow: inset 5px 5px 10px #be3838, inset -5px -5px 10px #ff5e5e;
+}
+
+/* Inputs */
+.stTextInput>div>div>input {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Custom Headers */
+h1,
+h2,
+h3 {
+    color: #ffd1d1;
+    text-shadow: 0px 0px 10px rgba(255, 75, 75, 0.3);
+}
